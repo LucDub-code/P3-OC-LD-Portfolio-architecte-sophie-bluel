@@ -133,6 +133,7 @@ body {
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
+  background-color: #fffef8;
 }
 header {
   display: flex;
@@ -198,6 +199,27 @@ li:hover {
   text-align: center;
   margin-bottom: 1em;
 }
+.filters {
+  display: flex;
+  gap: 10px;           
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.filters button {
+  background-color: #fffef8;
+  border: 1px solid #1d6154;
+  font-family: "Syne";
+  font-weight: 700;
+  color: #1d6154;
+  padding: 10px 20px;
+  border-radius: 60px;
+  cursor: pointer;
+}
+.filters button:hover {
+  background-color: #1d6154;
+  color: #fffef8;
+}
+
 .gallery {
   width: 100%;
   display: grid;
