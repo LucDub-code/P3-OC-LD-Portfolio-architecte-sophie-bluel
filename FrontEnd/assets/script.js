@@ -1,3 +1,22 @@
+// Gestion de la classe active pour la navigation
+function setActiveNavLink() {
+  const currentPage = window.location.pathname;
+  const navLinks = document.querySelectorAll("nav a");
+
+  navLinks.forEach((link) => {
+    const currentFileName = currentPage.split("/").pop();
+    const linkHref = link.getAttribute("href");
+
+    link.classList.remove("active");
+
+    if (linkHref === currentFileName) {
+      link.classList.add("active");
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", setActiveNavLink);
+
 // Récupération des données works de l'API
 
 let works = [];
@@ -73,6 +92,11 @@ fetch("http://localhost:5678/api/categories")
     const buttons = document.querySelectorAll(".filter-button");
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
+        // Réinitialisation de la classe active sur tous les boutons
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        // Ajouter la classe active au bouton cliqué
+        button.classList.add("active");
+
         const categoryId = button.dataset.category;
         let filteredWorks;
         if (categoryId === "all") {
@@ -87,3 +111,4 @@ fetch("http://localhost:5678/api/categories")
   .catch((error) => {
     console.log(`Erreur lors de la récupération des données: ${error.message}`);
   });
+
