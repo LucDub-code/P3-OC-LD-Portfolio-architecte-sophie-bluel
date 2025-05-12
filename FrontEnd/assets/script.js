@@ -19,7 +19,7 @@ fetch("http://localhost:5678/api/works")
     console.log(`Erreur lors de la récupération des données: ${error.message}`);
   });
 
-// Fonction d'affichage des travaux dans la galerie 
+// Fonction d'affichage des travaux dans la galerie
 // (utilisée dans l'appel initial et dans le filtre)
 
 const gallery = document.querySelector(".gallery");
@@ -27,17 +27,22 @@ const gallery = document.querySelector(".gallery");
 function displayWorks(list) {
   gallery.innerHTML = "";
   list.forEach((work) => {
-    gallery.innerHTML += `
-    <figure>
-    <img src="${work.imageUrl}" alt="${work.title}">
-    <figcaption>${work.title}</figcaption>
-    </figure>
-    `;
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const figcaption = document.createElement("figcaption");
+
+    img.src = work.imageUrl;
+    img.alt = work.title;
+    figcaption.textContent = work.title;
+
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+    gallery.appendChild(figure);
   });
 }
 
-// Récupération des données categories via l’API
-// Affichage des boutons 
+// Récupération des données categories via l'API
+// Affichage des boutons
 // Fonction de filtrage des travaux
 
 const filters = document.querySelector(".filters");
@@ -50,12 +55,20 @@ fetch("http://localhost:5678/api/categories")
     return response.json();
   })
   .then((data) => {
-    filters.innerHTML = `<button class="filter-button" data-category="all">Tous</button>`;
+    const allButton = document.createElement("button");
+    allButton.className = "filter-button";
+    allButton.dataset.category = "all";
+    allButton.textContent = "Tous";
+    filters.appendChild(allButton);
+
     data.forEach((category) => {
-      filters.innerHTML += `
-      <button class="filter-button" data-category="${category.id}">${category.name}</button>
-      `;
+      const button = document.createElement("button");
+      button.className = "filter-button";
+      button.dataset.category = category.id;
+      button.textContent = category.name;
+      filters.appendChild(button);
     });
+
     // Filtrage des travaux par catégorie grâce au boutons
     const buttons = document.querySelectorAll(".filter-button");
     buttons.forEach((button) => {
