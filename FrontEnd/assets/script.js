@@ -112,19 +112,37 @@ fetch("http://localhost:5678/api/categories")
     console.log(`Erreur lors de la récupération des données: ${error.message}`);
   });
 
-  // Mode administrateur
-  // Apparition de la bannière pour le mode édition
+// Mode administrateur
+// Apparition de la bannière pour le mode édition
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      showAdminBanner();
-    }
-  })
-
-  function showAdminBanner() {
-    const banner = document.querySelector(".admin-banner");
-    banner.style.display = "flex";
+document.addEventListener("DOMContentLoaded", () => {
+  const token = sessionStorage.getItem("token");
+  if (token) {
+    showAdminBanner();
   }
-  
+});
 
+function showAdminBanner() {
+  const banner = document.querySelector(".admin-banner");
+  banner.style.display = "flex";
+}
+
+// Apparition de la fenêtre modale pour l'ajout de projets
+
+function openModal() {
+  const modal = document.querySelector(".modal");
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+  modal.setAttribute("aria-modal", "true");
+  modal.addEventListener("click", closeModal);
+}
+
+function closeModal(e) {
+  if (e.target === e.currentTarget) {
+    modal.style.display = "none";
+  }
+}
+
+document
+  .querySelector(".edition-mode-link")
+  .addEventListener("click", openModal);

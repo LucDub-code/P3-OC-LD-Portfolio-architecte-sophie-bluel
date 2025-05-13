@@ -16,8 +16,13 @@
   <body>
     <div class="admin-banner">
       <div class="edition-mode">
-        <img src="./assets/icons/edition.svg" alt="edition" height="16" width="16"/>
-        <p>Mode édition</p>
+        <img
+          src="./assets/icons/edition.svg"
+          alt="edition"
+          height="16"
+          width="16"
+        />
+        <a href="#modal" class="edition-mode-link">Mode édition</a>
       </div>
     </div>
     <div class="container">
@@ -39,6 +44,23 @@
           </ul>
         </nav>
       </header>
+      <aside
+        id="modal"
+        class="modal"
+        aria-hidden="true"
+        role="dialog"
+        aria-labelledby="modal-title"
+        aria-modal="false"
+        style="display: none"
+      >
+        <div class="modal-content">
+          <button class="close-modal">X</button>
+          <h2 class="modal-title">Galerie photo</h2>
+          <div class="modal-gallery"></div>
+          <div class="modal-line"></div>
+          <button class="add-photo">Ajouter une photo</button>
+        </div>
+      </aside>
       <main>
         <section id="introduction">
           <figure>

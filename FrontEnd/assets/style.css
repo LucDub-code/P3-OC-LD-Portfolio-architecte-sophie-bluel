@@ -350,7 +350,6 @@ footer nav li:hover {
 }
 .admin-banner {
   background-color: #000;
-  color: #fff;
   height: 60px;
   width: 100%;
   font-family: "Work Sans";
@@ -362,4 +361,25 @@ footer nav li:hover {
   display: flex;
   gap: 10px;
   cursor: pointer;
+}
+.edition-mode a {
+  text-decoration: none;
+  color: #fff;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background-color: #fff;
+  border-radius: 10px;
+  height: 670px;
+  width: 630px;
 }
