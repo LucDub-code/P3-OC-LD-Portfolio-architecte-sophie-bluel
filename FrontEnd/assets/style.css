@@ -343,3 +343,8 @@ footer nav li:hover {
   bottom: 0;
   left: 0;
 }
+.login-error {
+  color: red;
+  margin-bottom: 2em;
+  text-align: center;
+}
