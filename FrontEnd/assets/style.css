@@ -348,3 +348,18 @@ footer nav li:hover {
   margin-bottom: 2em;
   text-align: center;
 }
+.admin-banner {
+  background-color: #000;
+  color: #fff;
+  height: 60px;
+  width: 100%;
+  font-family: "Work Sans";
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.edition-mode {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
