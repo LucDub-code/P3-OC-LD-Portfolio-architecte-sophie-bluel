@@ -112,3 +112,19 @@ fetch("http://localhost:5678/api/categories")
     console.log(`Erreur lors de la récupération des données: ${error.message}`);
   });
 
+  // Mode administrateur
+  // Apparition de la bannière pour le mode édition
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      showAdminBanner();
+    }
+  })
+
+  function showAdminBanner() {
+    const banner = document.querySelector(".admin-banner");
+    banner.style.display = "flex";
+  }
+  
+
