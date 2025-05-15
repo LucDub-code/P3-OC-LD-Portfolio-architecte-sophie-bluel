@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans:wght@300;400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
     <meta name="description" content="" />
@@ -15,14 +15,14 @@
   </head>
   <body>
     <div class="admin-banner">
-      <div class="edition-mode">
+      <div>
         <img
-          src="./assets/icons/edition.svg"
+          src="./assets/icons/edition-w.svg"
           alt="edition"
           height="16"
           width="16"
         />
-        <a href="#modal" class="edition-mode-link">Mode édition</a>
+        <p>Mode édition</p>
       </div>
     </div>
     <div class="container">
@@ -54,11 +54,13 @@
         style="display: none"
       >
         <div class="modal-content">
-          <button class="close-modal">X</button>
-          <h2 class="modal-title">Galerie photo</h2>
+          <button class="close-modal">
+            <img src="./assets/icons/close.svg" alt="close" />
+          </button>
+          <h3 class="modal-title">Galerie photo</h3>
           <div class="modal-gallery"></div>
           <div class="modal-line"></div>
-          <button class="add-photo">Ajouter une photo</button>
+          <button class="add-photo-button">Ajouter une photo</button>
         </div>
       </aside>
       <main>
@@ -86,7 +88,18 @@
           </article>
         </section>
         <section id="portfolio">
-          <h2>Mes Projets</h2>
+          <div class="portfolio-header">
+            <h2>Mes Projets</h2>
+            <div class="edition-mode">
+              <img
+                src="./assets/icons/edition-b.svg"
+                alt="edition"
+                height="16"
+                width="16"
+              />
+              <a href="#modal" class="edition-mode-link">modifier</a>
+            </div>
+          </div>
           <div class="filters"></div>
           <div class="gallery"></div>
         </section>

@@ -114,17 +114,24 @@ fetch("http://localhost:5678/api/categories")
 
 // Mode administrateur
 // Apparition de la bannière pour le mode édition
+// Disparition des boutons de filtre
 
 document.addEventListener("DOMContentLoaded", () => {
   const token = sessionStorage.getItem("token");
   if (token) {
     showAdminBanner();
+    hideFilters();
   }
 });
 
 function showAdminBanner() {
   const banner = document.querySelector(".admin-banner");
   banner.style.display = "flex";
+} 
+
+function hideFilters() {
+  const filters = document.querySelector(".filters");
+  filters.style.display = "none";
 }
 
 // Apparition de la fenêtre modale pour l'ajout de projets
