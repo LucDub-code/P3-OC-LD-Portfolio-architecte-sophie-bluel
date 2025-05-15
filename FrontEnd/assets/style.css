@@ -165,6 +165,7 @@ h1 {
   font-size: 22px;
   font-weight: 800;
   color: #b1663c;
+  cursor: pointer;
 }
 h1 > span {
   font-family: "Work Sans";
@@ -194,6 +195,13 @@ nav li {
   font-size: 1.2em;
 }
 nav li a:hover {
+  color: #b1663c;
+}
+nav i {
+  cursor: pointer;
+  font-size: 22px;
+}
+nav i:hover {
   color: #b1663c;
 }
 #introduction {
@@ -234,7 +242,7 @@ nav li a:hover {
   margin-right: 30px;
 }
 .edition-mode {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 10px;
   cursor: pointer;
@@ -400,7 +408,7 @@ footer nav li:hover {
   background-color: #fff;
   border-radius: 10px;
   height: 670px;
-  width: 330px;
+  width: 430px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -427,11 +435,16 @@ footer nav li:hover {
   margin-top: 65px;
 }
 .modal-gallery {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px 10px;
   margin-bottom: 70px;
+  width: 100%;
+}
+.modal-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 .modal-line {
   width: 100%;
