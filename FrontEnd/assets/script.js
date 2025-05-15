@@ -141,7 +141,6 @@ function hideFilters() {
 }
 
 // Apparition et fermeture de la fenêtre modale 
-// Affichage de la galerie dans la fenêtre modale
 
 const modal = document.querySelector(".modal");
 const closeModalButton = document.querySelector(".close-modal");
@@ -164,17 +163,36 @@ function closeModal(e) {
 }
 
 document
-  .querySelector(".edition-mode-link")
-  .addEventListener("click", openModal);
+.querySelector(".edition-mode-link")
+.addEventListener("click", openModal);
+
+// Affichage de la galerie dans la fenêtre modale
 
 const modalGallery = document.querySelector(".modal-gallery");  
 
 function displayModalGallery(list) {
   modalGallery.innerHTML = "";
   list.forEach((work) => {
-    const img = document.createElement("img");
-    img.src = work.imageUrl;
-    img.alt = work.title;
-    modalGallery.appendChild(img);
+    // Création des conteneurs pour les   images et les icones corbeille
+    const modalFigure = document.createElement("figure");
+    modalFigure.classList.add("modal-figure");
+
+    // Création et importation des images
+    const modalImg = document.createElement("img");
+    modalImg.src = work.imageUrl;
+    modalImg.alt = work.title;
+
+    // Création des icones corbeille
+    const modalTrash = document.createElement("div");
+    modalTrash.classList.add("modal-trash");
+    const modalTrashImg = document.createElement("img");
+    modalTrashImg.src = "./assets/icons/trash.svg";
+    modalTrashImg.alt = "supprimer";
+
+    // Ajout des éléments au conteneur
+    modalGallery.appendChild(modalFigure);
+    modalFigure.appendChild(modalImg);
+    modalFigure.appendChild(modalTrash);
+    modalTrash.appendChild(modalTrashImg);
   });
 }
