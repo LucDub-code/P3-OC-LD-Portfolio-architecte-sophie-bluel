@@ -452,6 +452,27 @@ footer nav li:hover {
   background-color: #b3b3b3;
   margin-bottom: 40px;
 }
+.modal-figure {
+  position: relative;
+  width: 100%;
+}
+.modal-trash {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #000;
+  border-radius: 2px;
+  width: 17px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.modal-trash img {
+  width: 10px;
+  height: 10px;
+}
 .add-photo-button {
   background-color: #1d6154;
   border: none;
@@ -460,7 +481,6 @@ footer nav li:hover {
   font-weight: 300;
   color: #fff;
   padding: 10px 50px;
-  margin-bottom: 45px;
   border-radius: 60px;
   cursor: pointer;
 }
