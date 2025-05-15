@@ -113,13 +113,14 @@ fetch("http://localhost:5678/api/categories")
   });
 
 // Mode administrateur
-// Apparition de la bannière pour le mode édition
+// Apparition de la bannière pour le mode édition et du bouton modifier
 // Disparition des boutons de filtre
 
 document.addEventListener("DOMContentLoaded", () => {
   const token = sessionStorage.getItem("token");
   if (token) {
     showAdminBanner();
+    showModifyButton();
     hideFilters();
   }
 });
@@ -127,29 +128,53 @@ document.addEventListener("DOMContentLoaded", () => {
 function showAdminBanner() {
   const banner = document.querySelector(".admin-banner");
   banner.style.display = "flex";
-} 
+}
+
+function showModifyButton() {
+  const modifyButton = document.querySelector(".edition-mode");
+  modifyButton.style.display = "flex";
+}
 
 function hideFilters() {
   const filters = document.querySelector(".filters");
   filters.style.display = "none";
 }
 
-// Apparition de la fenêtre modale pour l'ajout de projets
+// Apparition et fermeture de la fenêtre modale 
+// Affichage de la galerie dans la fenêtre modale
+
+const modal = document.querySelector(".modal");
+const closeModalButton = document.querySelector(".close-modal");
 
 function openModal() {
-  const modal = document.querySelector(".modal");
   modal.style.display = "flex";
   modal.setAttribute("aria-hidden", "false");
   modal.setAttribute("aria-modal", "true");
   modal.addEventListener("click", closeModal);
+  closeModalButton.addEventListener("click", closeModal);
+  displayModalGallery(works);
 }
 
 function closeModal(e) {
-  if (e.target === e.currentTarget) {
+  if (e.target === e.currentTarget || e.target.closest(".close-modal")) {
     modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+    modal.setAttribute("aria-modal", "false");
   }
 }
 
 document
   .querySelector(".edition-mode-link")
   .addEventListener("click", openModal);
+
+const modalGallery = document.querySelector(".modal-gallery");  
+
+function displayModalGallery(list) {
+  modalGallery.innerHTML = "";
+  list.forEach((work) => {
+    const img = document.createElement("img");
+    img.src = work.imageUrl;
+    img.alt = work.title;
+    modalGallery.appendChild(img);
+  });
+}
