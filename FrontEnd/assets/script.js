@@ -65,6 +65,7 @@ function displayWorks(list) {
 // Fonction de filtrage des travaux
 
 const filters = document.querySelector(".filters");
+const buttons = document.querySelectorAll(".filter-button");
 
 fetch("http://localhost:5678/api/categories")
   .then((response) => {
@@ -89,7 +90,6 @@ fetch("http://localhost:5678/api/categories")
     });
 
     // Filtrage des travaux par catégorie grâce au boutons
-    const buttons = document.querySelectorAll(".filter-button");
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
         // Réinitialisation de la classe active sur tous les boutons
@@ -116,6 +116,9 @@ fetch("http://localhost:5678/api/categories")
 // Apparition de la bannière pour le mode édition et du bouton modifier
 // Disparition des boutons de filtre
 
+const banner = document.querySelector(".admin-banner");
+const modifyButton = document.querySelector(".edition-mode");
+
 document.addEventListener("DOMContentLoaded", () => {
   const token = sessionStorage.getItem("token");
   if (token) {
@@ -126,17 +129,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function showAdminBanner() {
-  const banner = document.querySelector(".admin-banner");
   banner.style.display = "flex";
 }
 
 function showModifyButton() {
-  const modifyButton = document.querySelector(".edition-mode");
   modifyButton.style.display = "flex";
 }
 
 function hideFilters() {
-  const filters = document.querySelector(".filters");
   filters.style.display = "none";
 }
 
@@ -241,3 +241,46 @@ function openAddWorkModal() {
 }
 
 addPhotoButton.addEventListener("click", openAddWorkModal);
+
+// Prévisualisation de l'image choisie
+
+const modalAddPhoto = document.querySelector(".modal-add-photo");
+const fileInput = document.querySelector("#fileInput");
+
+fileInput.addEventListener("change", () => {
+  const file = fileInput.files[0]; // Récupération de la première image choisie
+  const imageURL = URL.createObjectURL(file); // Création d'une URL pour l'image
+  // Disparition des autres éléments
+  modalAddPhoto.querySelector("img").style.display = "none";
+  modalAddPhoto.querySelector("button").style.display = "none";
+  modalAddPhoto.querySelector("span").style.display = "none";
+  // Création de l'image choisie
+  const modalPreviewImg = document.createElement("img");
+  modalPreviewImg.src = imageURL;
+  modalPreviewImg.alt = "Image choisie";
+  modalPreviewImg.classList.add("modal-preview-img");
+  modalAddPhoto.appendChild(modalPreviewImg);
+});
+
+// Retour à la fenêtre modale galerie
+
+const backModalButton = document.querySelector(".back-modal");
+
+backModalButton.addEventListener("click", () => {
+  modalGalleryContent.style.display = "flex";
+  modalAddWorkContent.style.display = "none";
+
+  // Réinitialisation de l'interface d'ajout de photo
+  const modalPreviewImg = modalAddPhoto.querySelector(".modal-preview-img");
+  if (modalPreviewImg) {
+    modalPreviewImg.remove();
+  }
+
+  // Réafficher les éléments initiaux
+  modalAddPhoto.querySelector("img").style.display = "block";
+  modalAddPhoto.querySelector("button").style.display = "block";
+  modalAddPhoto.querySelector("span").style.display = "block";
+
+  // Réinitialiser l'input file
+  fileInput.value = "";
+});
