@@ -140,7 +140,7 @@ function hideFilters() {
   filters.style.display = "none";
 }
 
-// Apparition et fermeture de la fenêtre modale 
+// Apparition et fermeture de la fenêtre modale
 
 const modal = document.querySelector(".modal");
 const closeModalButton = document.querySelector(".close-modal");
@@ -163,12 +163,12 @@ function closeModal(e) {
 }
 
 document
-.querySelector(".edition-mode-link")
-.addEventListener("click", openModal);
+  .querySelector(".edition-mode-link")
+  .addEventListener("click", openModal);
 
 // Affichage de la galerie dans la fenêtre modale
 
-const modalGallery = document.querySelector(".modal-gallery");  
+const modalGallery = document.querySelector(".modal-gallery");
 
 function displayModalGallery(list) {
   modalGallery.innerHTML = "";
@@ -176,6 +176,7 @@ function displayModalGallery(list) {
     // Création des conteneurs pour les   images et les icones corbeille
     const modalFigure = document.createElement("figure");
     modalFigure.classList.add("modal-figure");
+    modalFigure.setAttribute("data-id", work.id);
 
     // Création et importation des images
     const modalImg = document.createElement("img");
@@ -194,5 +195,36 @@ function displayModalGallery(list) {
     modalFigure.appendChild(modalImg);
     modalFigure.appendChild(modalTrash);
     modalTrash.appendChild(modalTrashImg);
+
+    // Ajout d'un événement de clic sur l'icône corbeille
+    modalTrash.addEventListener("click", () => deleteWork(work.id));
   });
+}
+
+// Fonction de suppression des images dans la fenêtre modale
+
+function deleteWork(id) {
+  const token = sessionStorage.getItem("token");
+  fetch(`http://localhost:5678/api/works/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    // Suppression de l'image de la galerie de la fenêtre modale
+    .then(() => {
+      const modalFigure = document.querySelector(
+        `.modal-figure[data-id="${id}"]`
+      );
+      if (modalFigure) {
+        modalFigure.remove();
+      }
+      // Mise à jour de la liste des travaux
+      works = works.filter((work) => work.id !== id);
+      // Rafraîchissement de la galerie de la fenêtre modale 
+      // Rafraîchissement de la galerie principale
+      // Sans les travaux supprimés
+      displayModalGallery(works);
+      displayWorks(works);
+    });
 }
