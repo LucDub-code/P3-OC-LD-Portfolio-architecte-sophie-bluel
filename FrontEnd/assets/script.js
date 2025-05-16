@@ -221,10 +221,23 @@ function deleteWork(id) {
       }
       // Mise à jour de la liste des travaux
       works = works.filter((work) => work.id !== id);
-      // Rafraîchissement de la galerie de la fenêtre modale 
+      // Rafraîchissement de la galerie de la fenêtre modale
       // Rafraîchissement de la galerie principale
       // Sans les travaux supprimés
       displayModalGallery(works);
       displayWorks(works);
     });
 }
+
+// Ouverture de la fenêtre modale d'ajout de travaux
+
+const addPhotoButton = document.querySelector(".add-photo-button");
+const modalGalleryContent = document.querySelector(".modal-gallery-content");
+const modalAddWorkContent = document.querySelector(".modal-add-work-content");
+
+function openAddWorkModal() {
+  modalGalleryContent.style.display = "none";
+  modalAddWorkContent.style.display = "flex";
+}
+
+addPhotoButton.addEventListener("click", openAddWorkModal);

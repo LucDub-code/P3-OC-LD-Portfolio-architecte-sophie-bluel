@@ -52,14 +52,43 @@
         aria-modal="false"
         style="display: none"
       >
-        <div class="modal-content">
+        <div class="modal-gallery-content">
           <button class="close-modal">
-            <img src="./assets/icons/close.svg" alt="close" />
+            <img src="./assets/icons/close.svg" alt="fermer" />
           </button>
           <h3 class="modal-title">Galerie photo</h3>
           <div class="modal-gallery"></div>
           <div class="modal-line"></div>
           <button class="add-photo-button">Ajouter une photo</button>
+        </div>
+        <div class="modal-add-work-content">
+          <button class="close-modal">
+            <img src="./assets/icons/close.svg" alt="fermer" />
+          </button>
+          <button class="back-modal">
+            <img src="./assets/icons/back.svg" alt="retour" />
+          </button>
+          <h3 class="modal-title">Ajout photo</h3>
+          <div class="modal-add-photo">
+            <img src="./assets/icons/picture.svg" alt="ajouter une photo" />
+            <input type="file" id="fileInput" style="display: none" />
+            <button
+              class="select-photo-button"
+              type="button"
+              onclick="document.getElementById('fileInput').click()"
+            >
+              + Ajouter photo
+            </button>
+            <span>jpg, png : 4mo max</span>
+          </div>
+          <form class="add-work-form">
+            <label for="title">Titre</label>
+            <input type="text" id="title" name="title" />
+            <label for="category">Catégorie</label>
+            <select id="category" name="category"></select>
+            <div class="modal-line"></div>
+            <button class="add-work-button" type="submit">Valider</button>
+          </form>
         </div>
       </aside>
       <main>
@@ -117,7 +146,7 @@
               cols="30"
               rows="10"
             ></textarea>
-            <button type="submit">Envoyer</button>
+            <button type="submit" class="main-submit-button">Envoyer</button>
           </form>
         </section>
       </main>
