@@ -331,7 +331,7 @@ nav i:hover {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-button[type="submit"] {
+.main-submit-button {
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -345,7 +345,7 @@ button[type="submit"] {
   border: none;
   cursor: pointer;
 }
-button[type="submit"]:hover {
+.main-submit-button:hover {
   background-color: #0e2f28;
 }
 .forgot-password {
@@ -404,7 +404,7 @@ footer nav li:hover {
   align-items: center;
   justify-content: center;
 }
-.modal-content {
+.modal-gallery-content {
   background-color: #fff;
   border-radius: 10px;
   height: 670px;
@@ -486,4 +486,97 @@ footer nav li:hover {
 }
 .add-photo-button:hover {
   background-color: #0e2f28;
+}
+.modal-add-work-content {
+  background-color: #fff;
+  border-radius: 10px;
+  height: 670px;
+  width: 430px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 0 100px;
+}
+.back-modal {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background-color: transparent;
+  color: #000;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  height: 20px;
+}
+.back-modal img {
+  height: 100%;
+}
+.modal-add-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e8f1f6;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.modal-add-photo img {
+  width: 70px;
+  height: auto;
+  margin: 15px 0 10px 0;
+}
+.modal-add-photo button {
+  background-color: #cbd6dc;
+  border: none;
+  outline: none;
+  font-family: "Work Sans";
+  color: #306685;
+  padding: 10px 35px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.modal-add-photo span {
+  font-size: 10px;
+  color: #444444;
+  margin-bottom: 20px;
+}
+.add-work-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+.add-work-form label {
+  font-family: "Work Sans";
+  color: #3d3d3d;
+  margin-bottom: 10px;
+}
+.add-work-form input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-bottom: 25px;
+  width: 100%;
+}
+.add-work-form select {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-bottom: 50px;
+  width: 100%;
+}
+.add-work-button {
+  background-color: #a7a7a7;
+  border: none;
+  outline: none;
+  font-family: "Syne";
+  font-weight: 300;
+  color: #fff;
+  padding: 10px 95px;
+  border-radius: 60px;
+  cursor: pointer;
+  margin: 0 auto;
 }
