@@ -201,7 +201,7 @@ function displayModalGallery(list) {
   });
 }
 
-// Fonction de suppression des images dans la fenêtre modale
+// Fonction de suppression des travaux dans la fenêtre modale et dans la galerie principale
 
 function deleteWork(id) {
   const token = sessionStorage.getItem("token");
