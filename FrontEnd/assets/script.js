@@ -66,6 +66,7 @@ function displayWorks(list) {
 
 const filters = document.querySelector(".filters");
 const buttons = document.querySelectorAll(".filter-button");
+let categories = [];
 
 fetch("http://localhost:5678/api/categories")
   .then((response) => {
@@ -75,13 +76,17 @@ fetch("http://localhost:5678/api/categories")
     return response.json();
   })
   .then((data) => {
+    categories = data;
+
+    // Création du bouton "Tous"
     const allButton = document.createElement("button");
     allButton.className = "filter-button";
     allButton.dataset.category = "all";
     allButton.textContent = "Tous";
     filters.appendChild(allButton);
 
-    data.forEach((category) => {
+    // Création des boutons de catégories
+    categories.forEach((category) => {
       const button = document.createElement("button");
       button.className = "filter-button";
       button.dataset.category = category.id;
@@ -107,6 +112,8 @@ fetch("http://localhost:5678/api/categories")
         displayWorks(filteredWorks);
       });
     });
+    // Ajout des catégories dans l'input select de la fenêtre modale
+    addCategoriesToSelect();
   })
   .catch((error) => {
     console.log(`Erreur lors de la récupération des données: ${error.message}`);
@@ -262,6 +269,19 @@ fileInput.addEventListener("change", () => {
   modalAddPhoto.appendChild(modalPreviewImg);
 });
 
+// Ajout des catégories dans l'input select via les données récupérées de l'API
+
+const modalAddWorkFormSelect = document.querySelector("#category");
+
+function addCategoriesToSelect() {
+  categories.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category.id;
+    option.textContent = category.name;
+    modalAddWorkFormSelect.appendChild(option);
+  });
+}
+
 // Retour à la fenêtre modale galerie
 
 const backModalButton = document.querySelector(".back-modal");
@@ -276,7 +296,7 @@ backModalButton.addEventListener("click", () => {
     modalPreviewImg.remove();
   }
 
-  // Réafficher les éléments initiaux
+  // Réafficher les éléments initiaux dans la fenêtre d'ajout de photo
   modalAddPhoto.querySelector("img").style.display = "block";
   modalAddPhoto.querySelector("button").style.display = "block";
   modalAddPhoto.querySelector("span").style.display = "block";
