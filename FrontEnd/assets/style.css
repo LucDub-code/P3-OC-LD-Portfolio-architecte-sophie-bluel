@@ -440,8 +440,7 @@ footer nav li:hover {
 }
 .modal-title {
   font-size: 22px;
-  margin-bottom: 40px;
-  margin-top: 65px;
+  margin: 65px 0 40px 0;
 }
 .modal-gallery {
   display: grid;
@@ -483,6 +482,7 @@ footer nav li:hover {
   height: 10px;
 }
 .add-photo-button {
+  width: 240px;
   background-color: #1d6154;
   border: none;
   outline: none;
@@ -528,7 +528,7 @@ footer nav li:hover {
   background-color: #e8f1f6;
   width: 100%;
   height: 170px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 .add-photo-icon {
   width: 70px;
@@ -575,10 +575,10 @@ footer nav li:hover {
   color: #444444;
 }
 .add-work-form input {
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 }
 .add-work-form select {
-  margin-bottom: 45px;
+  margin-bottom: 50px;
   appearance: none;
   background-image: url("./icons/chevron-down.svg");
   background-repeat: no-repeat;
@@ -586,6 +586,7 @@ footer nav li:hover {
   background-size: 12px;
 }
 .add-work-button {
+  width: 240px;
   background-color: #a7a7a7;
   border: none;
   outline: none;
