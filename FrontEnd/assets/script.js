@@ -160,6 +160,11 @@ function openModal() {
   modal.setAttribute("aria-modal", "true");
   modal.addEventListener("click", closeModal);
   closeModalButton.addEventListener("click", closeModal);
+
+  // Réinitialiser l'affichage des fenêtres modales
+  modalGalleryContent.style.display = "flex";
+  modalAddWorkContent.style.display = "none";
+
   displayModalGallery(works);
 }
 
@@ -168,6 +173,7 @@ function closeModal(e) {
     modal.style.display = "none";
     modal.setAttribute("aria-hidden", "true");
     modal.setAttribute("aria-modal", "false");
+    resetForm();
   }
 }
 
@@ -276,7 +282,6 @@ fileInput.addEventListener("change", () => {
 const modalAddWorkFormSelect = document.querySelector("#category");
 
 function addCategoriesToSelect() {
-
   // Ajout d'une option vide par défaut
   const defaultOption = document.createElement("option");
   defaultOption.value = "";
@@ -299,10 +304,15 @@ const backModalButton = document.querySelector(".back-modal");
 backModalButton.addEventListener("click", () => {
   modalGalleryContent.style.display = "flex";
   modalAddWorkContent.style.display = "none";
+  resetForm();
+});
 
+// Fonction de réinitialisation du formulaire d'ajout de travaux
+
+function resetForm() {
   // Réinitialisation de l'interface d'ajout de photo
   const modalPreviewImg = modalAddPhoto.querySelector(".modal-preview-img");
-  
+
   if (modalPreviewImg) {
     modalPreviewImg.remove();
   }
@@ -312,19 +322,15 @@ backModalButton.addEventListener("click", () => {
   modalAddPhoto.querySelector("button").style.display = "block";
   modalAddPhoto.querySelector("span").style.display = "block";
 
-  // Réinitialiser l'input file
+  // Réinitialiser du formulaire d'ajout de travaux
   fileInput.value = "";
-
-  // Réinitialiser le titre
   titleInput.value = "";
-
-  // Réinitialiser la catégorie
   categorySelect.value = "";
 
   // Réinitialiser le bouton valider
   addWorkButton.classList.remove("active");
   addWorkButton.disabled = true;
-});
+}
 
 // Vérification de la validité des données du formulaire d'ajout de travaux
 
