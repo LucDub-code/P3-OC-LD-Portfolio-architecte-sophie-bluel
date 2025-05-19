@@ -546,6 +546,9 @@ footer nav li:hover {
   cursor: pointer;
   margin-bottom: 10px;
 }
+.modal-preview-img {
+  height: 100%;
+}
 .modal-add-photo span {
   font-size: 10px;
   color: #444444;
@@ -598,6 +601,10 @@ footer nav li:hover {
   cursor: pointer;
   margin: 0 auto;
 }
-.modal-preview-img {
-  height: 100%;
+.add-work-button:disabled {
+  background-color: #a7a7a7;
+  cursor: not-allowed;
+}
+.add-work-button.active {
+  background-color: #1D6154;
 }

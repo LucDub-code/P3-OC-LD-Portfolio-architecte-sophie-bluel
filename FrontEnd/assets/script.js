@@ -65,7 +65,6 @@ function displayWorks(list) {
 // Fonction de filtrage des travaux
 
 const filters = document.querySelector(".filters");
-const buttons = document.querySelectorAll(".filter-button");
 let categories = [];
 
 fetch("http://localhost:5678/api/categories")
@@ -93,6 +92,9 @@ fetch("http://localhost:5678/api/categories")
       button.textContent = category.name;
       filters.appendChild(button);
     });
+
+    // Sélection des boutons après leur création
+    const buttons = document.querySelectorAll(".filter-button");
 
     // Filtrage des travaux par catégorie grâce au boutons
     buttons.forEach((button) => {
@@ -274,6 +276,14 @@ fileInput.addEventListener("change", () => {
 const modalAddWorkFormSelect = document.querySelector("#category");
 
 function addCategoriesToSelect() {
+
+  // Ajout d'une option vide par défaut
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "";
+  modalAddWorkFormSelect.appendChild(defaultOption);
+
+  // Ajout des catégories
   categories.forEach((category) => {
     const option = document.createElement("option");
     option.value = category.id;
@@ -292,6 +302,7 @@ backModalButton.addEventListener("click", () => {
 
   // Réinitialisation de l'interface d'ajout de photo
   const modalPreviewImg = modalAddPhoto.querySelector(".modal-preview-img");
+  
   if (modalPreviewImg) {
     modalPreviewImg.remove();
   }
@@ -303,4 +314,40 @@ backModalButton.addEventListener("click", () => {
 
   // Réinitialiser l'input file
   fileInput.value = "";
+
+  // Réinitialiser le titre
+  titleInput.value = "";
+
+  // Réinitialiser la catégorie
+  categorySelect.value = "";
+
+  // Réinitialiser le bouton valider
+  addWorkButton.classList.remove("active");
+  addWorkButton.disabled = true;
 });
+
+// Vérification de la validité des données du formulaire d'ajout de travaux
+
+const titleInput = document.querySelector("#title");
+const categorySelect = document.querySelector("#category");
+const addWorkButton = document.querySelector(".add-work-button");
+
+function validateForm() {
+  const hasImage = fileInput.files.length > 0;
+  const hasTitle = titleInput.value.trim() !== "";
+  const hasCategory = categorySelect.value !== "";
+
+  if (hasImage && hasTitle && hasCategory) {
+    addWorkButton.classList.add("active");
+    addWorkButton.disabled = false;
+  } else {
+    addWorkButton.classList.remove("active");
+    addWorkButton.disabled = true;
+  }
+}
+
+validateForm();
+
+fileInput.addEventListener("change", validateForm);
+titleInput.addEventListener("input", validateForm);
+categorySelect.addEventListener("change", validateForm);
