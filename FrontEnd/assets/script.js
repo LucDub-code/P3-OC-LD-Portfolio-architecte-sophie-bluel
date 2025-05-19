@@ -170,6 +170,7 @@ function openModal() {
 
 function closeModal(event) {
   if (
+    !event ||
     event.target === event.currentTarget ||
     event.target.closest(".close-modal")
   ) {
@@ -221,8 +222,9 @@ function displayModalGallery(list) {
 
 // Fonction de suppression des travaux dans la fenêtre modale et dans la galerie principale
 
+const token = sessionStorage.getItem("token");
+
 function deleteWork(id) {
-  const token = sessionStorage.getItem("token");
   fetch(`http://localhost:5678/api/works/${id}`, {
     method: "DELETE",
     headers: {
@@ -351,10 +353,8 @@ function isFormValid() {
 function updateAddWorkButton() {
   if (isFormValid()) {
     addWorkButton.classList.add("valid");
-    formErrorMessage.textContent = "";
   } else {
     addWorkButton.classList.remove("valid");
-    formErrorMessage.textContent = "Veuillez remplir tous les champs";
   }
 }
 
@@ -373,6 +373,34 @@ addWorkForm.addEventListener("submit", (event) => {
   event.preventDefault();
   if (isFormValid()) {
     formErrorMessage.textContent = "";
+
+    const formData = new FormData();
+    formData.append("image", fileInput.files[0]);
+    formData.append("title", titleInput.value.trim());
+    formData.append("category", categorySelect.value);
+
+    fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    })
+    .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+      works.push(data); // Pour un affichage immédiat du nouveau travail
+      displayWorks(works);
+      displayModalGallery(works);
+      closeModal();
+    })
+    .catch(error => {
+      console.log(`Erreur lors de l'envoi du projet: ${error.message}`);
+    });
   } else {
     formErrorMessage.textContent = "Veuillez remplir tous les champs";
   }
