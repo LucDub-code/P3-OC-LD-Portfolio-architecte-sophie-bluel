@@ -168,8 +168,11 @@ function openModal() {
   displayModalGallery(works);
 }
 
-function closeModal(e) {
-  if (e.target === e.currentTarget || e.target.closest(".close-modal")) {
+function closeModal(event) {
+  if (
+    event.target === event.currentTarget ||
+    event.target.closest(".close-modal")
+  ) {
     modal.style.display = "none";
     modal.setAttribute("aria-hidden", "true");
     modal.setAttribute("aria-modal", "false");
@@ -326,10 +329,8 @@ function resetForm() {
   fileInput.value = "";
   titleInput.value = "";
   categorySelect.value = "";
-
-  // Réinitialiser le bouton valider
-  addWorkButton.classList.remove("active");
-  addWorkButton.disabled = true;
+  addWorkButton.classList.remove("valid");
+  formErrorMessage.textContent = "";
 }
 
 // Vérification de la validité des données du formulaire d'ajout de travaux
@@ -338,22 +339,41 @@ const titleInput = document.querySelector("#title");
 const categorySelect = document.querySelector("#category");
 const addWorkButton = document.querySelector(".add-work-button");
 
-function validateForm() {
+function isFormValid() {
   const hasImage = fileInput.files.length > 0;
   const hasTitle = titleInput.value.trim() !== "";
   const hasCategory = categorySelect.value !== "";
+  return hasImage && hasTitle && hasCategory;
+}
 
-  if (hasImage && hasTitle && hasCategory) {
-    addWorkButton.classList.add("active");
-    addWorkButton.disabled = false;
+// Changement de la classe du bouton d'ajout de travaux en fonction de la validité des données du formulaire
+
+function updateAddWorkButton() {
+  if (isFormValid()) {
+    addWorkButton.classList.add("valid");
+    formErrorMessage.textContent = "";
   } else {
-    addWorkButton.classList.remove("active");
-    addWorkButton.disabled = true;
+    addWorkButton.classList.remove("valid");
+    formErrorMessage.textContent = "Veuillez remplir tous les champs";
   }
 }
 
-validateForm();
+// Vérification à chaque modification du formulaire
 
-fileInput.addEventListener("change", validateForm);
-titleInput.addEventListener("input", validateForm);
-categorySelect.addEventListener("change", validateForm);
+fileInput.addEventListener("change", updateAddWorkButton);
+titleInput.addEventListener("input", updateAddWorkButton);
+categorySelect.addEventListener("change", updateAddWorkButton);
+
+// Envoi des données du formulaire à l'API lors du submit
+
+const addWorkForm = document.querySelector(".add-work-form");
+const formErrorMessage = document.querySelector(".form-error-message");
+
+addWorkForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (isFormValid()) {
+    formErrorMessage.textContent = "";
+  } else {
+    formErrorMessage.textContent = "Veuillez remplir tous les champs";
+  }
+});

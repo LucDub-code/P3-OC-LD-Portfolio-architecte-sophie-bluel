@@ -601,10 +601,13 @@ footer nav li:hover {
   cursor: pointer;
   margin: 0 auto;
 }
-.add-work-button:disabled {
-  background-color: #a7a7a7;
-  cursor: not-allowed;
-}
-.add-work-button.active {
+.add-work-button.valid {
   background-color: #1d6154;
+}
+.form-error-message {
+  color: red;
+  font-size: 14px;
+  font-family: "Work Sans";
+  text-align: center;
+  margin: 10px auto;
 }
