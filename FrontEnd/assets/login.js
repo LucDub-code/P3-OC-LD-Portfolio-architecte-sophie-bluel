@@ -1,4 +1,6 @@
-// Gestion de la connexion
+// ────────────────────────────────────────────────────────────────────────────────
+//                           Gestion de la connexion
+// ────────────────────────────────────────────────────────────────────────────────
 
 const form = document.querySelector(".login-form");
 const emailInput = document.querySelector("#email");
