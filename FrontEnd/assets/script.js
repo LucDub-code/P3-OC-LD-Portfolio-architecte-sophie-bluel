@@ -387,7 +387,7 @@ function updateAddWorkButton() {
 }
 
 // ────────────────────────────────────────────────────────────────────────────────
-// Vérification à chaque modification du formulaire
+//               Vérification à chaque modification du formulaire
 // ────────────────────────────────────────────────────────────────────────────────
 
 fileInput.addEventListener("change", updateAddWorkButton);
@@ -395,7 +395,7 @@ titleInput.addEventListener("input", updateAddWorkButton);
 categorySelect.addEventListener("change", updateAddWorkButton);
 
 // ────────────────────────────────────────────────────────────────────────────────
-// Envoi des données du formulaire à l'API lors du submit
+//             Envoi des données du formulaire à l'API lors du submit
 // ────────────────────────────────────────────────────────────────────────────────
 
 const addWorkForm = document.querySelector(".add-work-form");
