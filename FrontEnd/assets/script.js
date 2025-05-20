@@ -1,4 +1,7 @@
-// Gestion de la classe active pour la navigation
+// ────────────────────────────────────────────────────────────────────────────────
+//                  Gestion de la classe active pour la navigation
+// ────────────────────────────────────────────────────────────────────────────────
+
 function setActiveNavLink() {
   const currentPage = window.location.pathname;
   const navLinks = document.querySelectorAll("nav a");
@@ -17,7 +20,9 @@ function setActiveNavLink() {
 
 document.addEventListener("DOMContentLoaded", setActiveNavLink);
 
-// Récupération des données works de l'API
+// ────────────────────────────────────────────────────────────────────────────────
+//                  Récupération des données works de l'API
+// ────────────────────────────────────────────────────────────────────────────────
 
 let works = [];
 
@@ -38,8 +43,9 @@ fetch("http://localhost:5678/api/works")
     console.log(`Erreur lors de la récupération des données: ${error.message}`);
   });
 
-// Fonction d'affichage des travaux dans la galerie
-// (utilisée dans l'appel initial et dans le filtre)
+// ────────────────────────────────────────────────────────────────────────────────
+//                  Fonction d'affichage des travaux dans la galerie
+// ────────────────────────────────────────────────────────────────────────────────
 
 const gallery = document.querySelector(".gallery");
 
@@ -60,9 +66,11 @@ function displayWorks(list) {
   });
 }
 
-// Récupération des données categories via l'API
-// Affichage des boutons
-// Fonction de filtrage des travaux
+// ────────────────────────────────────────────────────────────────────────────────
+//                  Récupération des données categories via l'API
+//                            Affichage des boutons
+//                        Fonction de filtrage des travaux
+// ────────────────────────────────────────────────────────────────────────────────
 
 const filters = document.querySelector(".filters");
 let categories = [];
@@ -121,9 +129,11 @@ fetch("http://localhost:5678/api/categories")
     console.log(`Erreur lors de la récupération des données: ${error.message}`);
   });
 
-// Mode administrateur
-// Apparition de la bannière pour le mode édition et du bouton modifier
-// Disparition des boutons de filtre
+// ────────────────────────────────────────────────────────────────────────────────
+//                           Mode administrateur
+//      Apparition de la bannière et du bouton modifier pour le mode édition
+//                     Disparition des boutons de filtre
+// ────────────────────────────────────────────────────────────────────────────────
 
 const banner = document.querySelector(".admin-banner");
 const modifyButton = document.querySelector(".edition-mode");
@@ -149,7 +159,9 @@ function hideFilters() {
   filters.style.display = "none";
 }
 
-// Apparition et fermeture de la fenêtre modale
+// ────────────────────────────────────────────────────────────────────────────────
+//                  Apparition et fermeture de la fenêtre modale
+// ────────────────────────────────────────────────────────────────────────────────
 
 const modal = document.querySelector(".modal");
 const closeModalButton = document.querySelector(".close-modal");
@@ -185,7 +197,9 @@ document
   .querySelector(".edition-mode-link")
   .addEventListener("click", openModal);
 
-// Affichage de la galerie dans la fenêtre modale
+// ────────────────────────────────────────────────────────────────────────────────
+//                  Affichage de la galerie dans la fenêtre modale
+// ────────────────────────────────────────────────────────────────────────────────
 
 const modalGallery = document.querySelector(".modal-gallery");
 
@@ -220,7 +234,9 @@ function displayModalGallery(list) {
   });
 }
 
-// Fonction de suppression des travaux dans la fenêtre modale et dans la galerie principale
+// ────────────────────────────────────────────────────────────────────────────────
+//           Suppression des travaux dans la modale et dans la galerie
+// ────────────────────────────────────────────────────────────────────────────────
 
 const token = sessionStorage.getItem("token");
 
@@ -249,7 +265,9 @@ function deleteWork(id) {
     });
 }
 
-// Ouverture de la fenêtre modale d'ajout de travaux
+// ────────────────────────────────────────────────────────────────────────────────
+//              Ouverture de la fenêtre modale d'ajout de travaux
+// ────────────────────────────────────────────────────────────────────────────────
 
 const addPhotoButton = document.querySelector(".add-photo-button");
 const modalGalleryContent = document.querySelector(".modal-gallery-content");
@@ -282,7 +300,9 @@ fileInput.addEventListener("change", () => {
   modalAddPhoto.appendChild(modalPreviewImg);
 });
 
-// Ajout des catégories dans l'input select via les données récupérées de l'API
+// ────────────────────────────────────────────────────────────────────────────────
+//                  Ajout des catégories dans l'input select
+// ────────────────────────────────────────────────────────────────────────────────
 
 const modalAddWorkFormSelect = document.querySelector("#category");
 
@@ -302,7 +322,9 @@ function addCategoriesToSelect() {
   });
 }
 
-// Retour à la fenêtre modale galerie
+// ────────────────────────────────────────────────────────────────────────────────
+//                  Retour à la fenêtre modale galerie
+// ────────────────────────────────────────────────────────────────────────────────
 
 const backModalButton = document.querySelector(".back-modal");
 
@@ -312,7 +334,9 @@ backModalButton.addEventListener("click", () => {
   resetForm();
 });
 
-// Fonction de réinitialisation du formulaire d'ajout de travaux
+// ────────────────────────────────────────────────────────────────────────────────
+//             Réinitialisation du formulaire d'ajout de travaux
+// ────────────────────────────────────────────────────────────────────────────────
 
 function resetForm() {
   // Réinitialisation de l'interface d'ajout de photo
@@ -335,7 +359,9 @@ function resetForm() {
   formErrorMessage.textContent = "";
 }
 
-// Vérification de la validité des données du formulaire d'ajout de travaux
+// ────────────────────────────────────────────────────────────────────────────────
+//           Vérification de la validité des données du formulaire
+// ────────────────────────────────────────────────────────────────────────────────
 
 const titleInput = document.querySelector("#title");
 const categorySelect = document.querySelector("#category");
@@ -348,7 +374,9 @@ function isFormValid() {
   return hasImage && hasTitle && hasCategory;
 }
 
-// Changement de la classe du bouton d'ajout de travaux en fonction de la validité des données du formulaire
+// ────────────────────────────────────────────────────────────────────────────────
+//           Changement de la classe du bouton d'ajout de travaux
+// ────────────────────────────────────────────────────────────────────────────────
 
 function updateAddWorkButton() {
   if (isFormValid()) {
@@ -358,13 +386,17 @@ function updateAddWorkButton() {
   }
 }
 
+// ────────────────────────────────────────────────────────────────────────────────
 // Vérification à chaque modification du formulaire
+// ────────────────────────────────────────────────────────────────────────────────
 
 fileInput.addEventListener("change", updateAddWorkButton);
 titleInput.addEventListener("input", updateAddWorkButton);
 categorySelect.addEventListener("change", updateAddWorkButton);
 
+// ────────────────────────────────────────────────────────────────────────────────
 // Envoi des données du formulaire à l'API lors du submit
+// ────────────────────────────────────────────────────────────────────────────────
 
 const addWorkForm = document.querySelector(".add-work-form");
 const formErrorMessage = document.querySelector(".form-error-message");
