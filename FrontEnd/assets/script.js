@@ -1,26 +1,4 @@
 // ────────────────────────────────────────────────────────────────────────────────
-//                  Gestion de la classe active pour la navigation
-// ────────────────────────────────────────────────────────────────────────────────
-
-function setActiveNavLink() {
-  const currentPage = window.location.pathname;
-  const navLinks = document.querySelectorAll("nav a");
-
-  navLinks.forEach((link) => {
-    const currentFileName = currentPage.split("/").pop();
-    const linkHref = link.getAttribute("href");
-
-    link.classList.remove("active");
-
-    if (linkHref === currentFileName) {
-      link.classList.add("active");
-    }
-  });
-}
-
-document.addEventListener("DOMContentLoaded", setActiveNavLink);
-
-// ────────────────────────────────────────────────────────────────────────────────
 //                  Récupération des données works de l'API
 // ────────────────────────────────────────────────────────────────────────────────
 
@@ -288,10 +266,12 @@ const fileInput = document.querySelector("#fileInput");
 fileInput.addEventListener("change", () => {
   const file = fileInput.files[0]; // Récupération de la première image choisie
   const imageURL = URL.createObjectURL(file); // Création d'une URL pour l'image
+
   // Disparition des autres éléments
   modalAddPhoto.querySelector("img").style.display = "none";
   modalAddPhoto.querySelector("button").style.display = "none";
   modalAddPhoto.querySelector("span").style.display = "none";
+
   // Création de l'image choisie
   const modalPreviewImg = document.createElement("img");
   modalPreviewImg.src = imageURL;
