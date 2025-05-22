@@ -258,7 +258,9 @@ function openAddWorkModal() {
 
 addPhotoButton.addEventListener("click", openAddWorkModal);
 
-// Prévisualisation de l'image choisie
+// ────────────────────────────────────────────────────────────────────────────────
+//                    Prévisualisation de l'image choisie
+// ────────────────────────────────────────────────────────────────────────────────
 
 const modalAddPhoto = document.querySelector(".modal-add-photo");
 const fileInput = document.querySelector("#fileInput");
