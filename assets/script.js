@@ -4,7 +4,9 @@
 
 let works = [];
 
-fetch("http://localhost:5678/api/works")
+fetch(
+  "https://p3-oc-ld-portfolio-architecte-sophie-bluel.onrender.com/api/works"
+)
   .then((response) => {
     // Gestion des erreurs HTTP 400 à 500
     if (!response.ok) {
@@ -53,7 +55,9 @@ function displayWorks(list) {
 const filters = document.querySelector(".filters");
 let categories = [];
 
-fetch("http://localhost:5678/api/categories")
+fetch(
+  "https://p3-oc-ld-portfolio-architecte-sophie-bluel.onrender.com/api/categories"
+)
   .then((response) => {
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
@@ -219,12 +223,15 @@ function displayModalGallery(list) {
 const token = sessionStorage.getItem("token");
 
 function deleteWork(id) {
-  fetch(`http://localhost:5678/api/works/${id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  fetch(
+    `https://p3-oc-ld-portfolio-architecte-sophie-bluel.onrender.com/api/works/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  )
     // Suppression de l'image de la galerie de la fenêtre modale
     .then(() => {
       const modalFigure = document.querySelector(
@@ -393,28 +400,31 @@ addWorkForm.addEventListener("submit", (event) => {
     formData.append("title", titleInput.value.trim());
     formData.append("category", categorySelect.value);
 
-    fetch("http://localhost:5678/api/works", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    })
-    .then(response => {
+    fetch(
+      "https://p3-oc-ld-portfolio-architecte-sophie-bluel.onrender.com/api/works",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      }
+    )
+      .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
         }
         return response.json();
-    })
-    .then(data => {
-      works.push(data); // Pour un affichage immédiat du nouveau travail
-      displayWorks(works);
-      displayModalGallery(works);
-      closeModal();
-    })
-    .catch(error => {
-      console.log(`Erreur lors de l'envoi du projet: ${error.message}`);
-    });
+      })
+      .then((data) => {
+        works.push(data); // Pour un affichage immédiat du nouveau travail
+        displayWorks(works);
+        displayModalGallery(works);
+        closeModal();
+      })
+      .catch((error) => {
+        console.log(`Erreur lors de l'envoi du projet: ${error.message}`);
+      });
   } else {
     formErrorMessage.textContent = "Veuillez remplir tous les champs";
   }
