@@ -4,9 +4,7 @@
 
 let works = [];
 
-fetch(
-  "https://p3-oc-ld-portfolio-architecte-sophie-bluel.onrender.com/api/works"
-)
+fetch("https://p3-oc-ld-portfolio-architecte-sophie.onrender.com/api/works")
   .then((response) => {
     // Gestion des erreurs HTTP 400 à 500
     if (!response.ok) {
@@ -56,7 +54,7 @@ const filters = document.querySelector(".filters");
 let categories = [];
 
 fetch(
-  "https://p3-oc-ld-portfolio-architecte-sophie-bluel.onrender.com/api/categories"
+  "https://p3-oc-ld-portfolio-architecte-sophie.onrender.com/api/categories"
 )
   .then((response) => {
     if (!response.ok) {
@@ -224,7 +222,7 @@ const token = sessionStorage.getItem("token");
 
 function deleteWork(id) {
   fetch(
-    `https://p3-oc-ld-portfolio-architecte-sophie-bluel.onrender.com/api/works/${id}`,
+    `https://p3-oc-ld-portfolio-architecte-sophie.onrender.com/api/works/${id}`,
     {
       method: "DELETE",
       headers: {
@@ -401,7 +399,7 @@ addWorkForm.addEventListener("submit", (event) => {
     formData.append("category", categorySelect.value);
 
     fetch(
-      "https://p3-oc-ld-portfolio-architecte-sophie-bluel.onrender.com/api/works",
+      "https://p3-oc-ld-portfolio-architecte-sophie.onrender.com/api/works",
       {
         method: "POST",
         headers: {
