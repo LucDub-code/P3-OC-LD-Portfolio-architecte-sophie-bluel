@@ -4,7 +4,7 @@
 
 let works = [];
 
-fetch("https://site--sophie-bluel--sm4nx…code.run/api/works")
+fetch("https://site--sophie-bluel--sm4nxfjp4m6h.code.run/api/works")
   .then((response) => {
     // Gestion des erreurs HTTP 400 à 500
     if (!response.ok) {
@@ -54,7 +54,7 @@ const filters = document.querySelector(".filters");
 let categories = [];
 
 fetch(
-  "https://site--sophie-bluel--sm4nx…code.run/api/categories"
+  "https://site--sophie-bluel--sm4nxfjp4m6h.code.run/api/categories"
 )
   .then((response) => {
     if (!response.ok) {
@@ -222,7 +222,7 @@ const token = sessionStorage.getItem("token");
 
 function deleteWork(id) {
   fetch(
-    `https://site--sophie-bluel--sm4nx…code.run/api/works/${id}`,
+    `https://site--sophie-bluel--sm4nxfjp4m6h.code.run/api/works/${id}`,
     {
       method: "DELETE",
       headers: {
@@ -399,7 +399,7 @@ addWorkForm.addEventListener("submit", (event) => {
     formData.append("category", categorySelect.value);
 
     fetch(
-      "https://site--sophie-bluel--sm4nx…code.run/api/works",
+      "https://site--sophie-bluel--sm4nxfjp4m6h.code.run/api/works",
       {
         method: "POST",
         headers: {
