@@ -26,6 +26,7 @@
     "nodemon": "^3.1.10"
   },
   "overrides": {
-    "tar": ">=7.5.11"
+    "tar": ">=7.5.11",
+    "@tootallnate/once": ">=3.0.1"
   }
 }
