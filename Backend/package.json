@@ -20,13 +20,14 @@
     "sequelize": "^6.37.8",
     "sqlite3": "^5.1.6",
     "swagger-ui-express": "^4.3.0",
+    "uuid": "^11.1.1",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
   },
   "overrides": {
-    "tar": ">=7.5.11",
+    "tar": ">=7.5.16",
     "@tootallnate/once": ">=3.0.1"
   }
 }
